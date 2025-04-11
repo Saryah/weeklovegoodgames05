@@ -1,15 +1,24 @@
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class GroundGeneration : MonoBehaviour
 {
+    public static GroundGeneration instance;
     public int minL, minW, maxL, maxW;
     [SerializeField] GameObject ground, worldBorder;
     [SerializeField] Transform groundHolder;
     
-    
+
+    void Awake()
+    {
+        if(instance != null)
+            Destroy(instance);
+        instance = this;
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         for (int l = minL; l < maxL; l++)
         {
             for (int w = minW; w < maxW; w++)

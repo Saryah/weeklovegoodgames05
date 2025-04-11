@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Floor
+  - Obstical
+  - NPC
+  - Enemy
   layers:
   - Default
   - TransparentFX

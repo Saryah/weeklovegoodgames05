@@ -6,9 +6,12 @@ public class GridSystem : MonoBehaviour
     public GameObject objectToPlace;
     public float gridSize = 1f;
     [SerializeField] List<Color> colors = new List<Color>();
-    private GameObject ghostObject;
+    public GameObject ghostObject;
+    [SerializeField] GameObject hoveredGroundBlock = null; // Add this at class level if you want to track it.
     private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
-    private bool canPlace;
+    [SerializeField] private bool canPlace;
+    public Color canPlaceColor;
+    public Color cantPlaceColor;
 
     void Update()
     {
@@ -60,24 +63,38 @@ public class GridSystem : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             Vector3 point = hit.point;
-            
-            Vector3 snappedPos = new Vector3(Mathf.Round(point.x / gridSize) * gridSize,
-                Mathf.Round(point.y / gridSize) * gridSize + .5f, 
-                Mathf.Round(point.z / gridSize) * gridSize);
+            Vector3 snappedPos = new Vector3(
+                Mathf.Round(point.x / gridSize) * gridSize,
+                Mathf.Round(point.y / gridSize) * gridSize,
+                Mathf.Round(point.z / gridSize) * gridSize
+            );
+
             ghostObject.transform.position = snappedPos;
 
-            if (occupiedPositions.Contains(snappedPos) || hit.collider.gameObject.tag != "Floor")
+            bool isGroundReplace = hit.collider.CompareTag("Ground") && objectToPlace.CompareTag("Floor");
+            hoveredGroundBlock = isGroundReplace ? hit.collider.gameObject : null;
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                SetGhostColor(Color.red);
+                
+                ghostObject.transform.Rotate(0f, 90f, 0f);
+            }
+            
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                ghostObject.transform.Rotate(0f, -90f, 0f);
+            }
+            if (occupiedPositions.Contains(snappedPos) || hit.collider.tag == "Floor" && objectToPlace.tag == "Floor" || objectToPlace.tag != "Floor" && hit.collider.gameObject.tag != "Floor")
+            {
+                SetGhostColor(cantPlaceColor);
                 canPlace = false;
             }
             else
             {
-                SetGhostColor(new Color(1f,1f,1f,0.5f));
+                SetGhostColor(canPlaceColor);
                 canPlace = true;
             }
         }
-        
+
     }
 
     void SetGhostColor(Color color)
@@ -102,11 +119,18 @@ public class GridSystem : MonoBehaviour
                 Material mat = renderers[i].material;
                 mat.color = colors[i];
             }
-            Instantiate(objectToPlace, placementPosition, Quaternion.identity);
+
+            if (hoveredGroundBlock != null)
+            {
+                //placementPosition.y -= .5f;
+                Destroy(hoveredGroundBlock); // Replace the ground block
+            }
+
+            Instantiate(objectToPlace, placementPosition, ghostObject.transform.rotation);
             occupiedPositions.Add(placementPosition);
         }
+        Destroy(ghostObject);
         ghostObject = null;
         objectToPlace = null;
-        
     }
 }

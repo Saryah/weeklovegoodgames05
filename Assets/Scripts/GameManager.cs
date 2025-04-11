@@ -41,12 +41,21 @@ void Awake()
             Cursor.lockState = CursorLockMode.None;
             inMenu = true;
         }
+        
     }
 
     public void LockCursor()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        player.GetComponent<FirstPersonController>().enabled = true;
+    }
+
+    public void UnlockCursor()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        player.GetComponent<FirstPersonController>().enabled = false;
     }
 
     

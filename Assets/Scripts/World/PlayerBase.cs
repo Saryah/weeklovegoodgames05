@@ -19,34 +19,7 @@ public class PlayerBase : MonoBehaviour
 
     void Update()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 10))
-        {
-            GameManager.instance.lookAtImg.sprite = hit.collider.gameObject.GetComponent<Object>().objSprite;
-            if (isPurchasingFloor)
-             {
-                if (hit.collider.gameObject.tag == "Ground")
-                {
-                    GameManager.instance.canPlaceImg.sprite = GameManager.instance.canPlace;
-                    if (Input.GetMouseButtonDown(0))
-                    {
-                        hit.collider.gameObject.GetComponent<Renderer>().material = baseMat;
-                        hit.collider.gameObject.GetComponent<Object>().objSprite = Resources.Load<Sprite>("UI/ButtonUI/Floor");
-                        isPurchasingFloor = false;
-                        IncreaseCost();
-                    }
-                }
-                else
-                {
-                    GameManager.instance.canPlaceImg.sprite = GameManager.instance.cantPlace;
-                }
-            }
-            else
-            {
-                GameManager.instance.lookAtImg.sprite = null;
-            }
-        }
+        
     }
     public void SetBase()
     {
@@ -71,13 +44,12 @@ public class PlayerBase : MonoBehaviour
                 }
             }
         }
-        
     }
 
     public void PurchaseFloor()
     {
         isPurchasingFloor = true;
-        GameManager.instance.buildMenu.SetActive(false);
+        //GameManager.instance.buildMenu.SetActive(false);
         GameManager.instance.inMenu = false;
         GameManager.instance.LockCursor();
         GameManager.instance.player.GetComponent<FirstPersonController>().enabled = true;

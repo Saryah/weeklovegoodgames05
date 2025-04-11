@@ -4,6 +4,8 @@ public class Player : MonoBehaviour
 {
     public static Player instance;
     public int playerMoney;
+    public int playerHealth;
+    public int playerMaxHealth;
 
     void Awake()
     {
@@ -11,5 +13,14 @@ public class Player : MonoBehaviour
             Destroy(instance);
         instance = this;
     }
-    
+
+    void Start()
+    {
+        playerHealth = playerMaxHealth;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        playerHealth -= damage;
+    }
 }
