@@ -8,13 +8,14 @@ public class GridSystem : MonoBehaviour
     [SerializeField] List<Color> colors = new List<Color>();
     private GameObject ghostObject;
     private HashSet<Vector3> occupiedPositions = new HashSet<Vector3>();
+    private bool canPlace;
 
     void Update()
     {
         if (objectToPlace == null)
             return;
         UpdateGhostPosition();
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.inMenu == false)
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.inMenu == false && !PlayerBase.instance.isPurchasingFloor && canPlace)
             PlaceObject();
     }
 
@@ -64,11 +65,17 @@ public class GridSystem : MonoBehaviour
                 Mathf.Round(point.y / gridSize) * gridSize + .5f, 
                 Mathf.Round(point.z / gridSize) * gridSize);
             ghostObject.transform.position = snappedPos;
-            
-            if(occupiedPositions.Contains(snappedPos))
+
+            if (occupiedPositions.Contains(snappedPos) || hit.collider.gameObject.tag != "Floor")
+            {
                 SetGhostColor(Color.red);
+                canPlace = false;
+            }
             else
+            {
                 SetGhostColor(new Color(1f,1f,1f,0.5f));
+                canPlace = true;
+            }
         }
         
     }

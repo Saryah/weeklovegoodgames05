@@ -1,14 +1,25 @@
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public GameObject player;
     public bool inMenu = false;
-    [Header("Menu")]
+    [Space(10)] 
+    [Header("Menu")] 
     public GameObject buildMenu;
 
-    void Awake()
+    [Space(10)] 
+    [Header("HUD")] 
+    public Image lookAtImg;
+    public Image canPlaceImg;
+    public Sprite canPlace;
+    public Sprite cantPlace;
+
+
+void Awake()
     {
         if(instance != null)
             Destroy(gameObject);
@@ -37,4 +48,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    
 }

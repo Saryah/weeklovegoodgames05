@@ -17,6 +17,7 @@ public class GroundGeneration : MonoBehaviour
                 if (l > minL && l < maxL && w > minW && w < maxW)
                 {
                     Vector3 spawnPos = new Vector3(l, 0, w);
+                    ground.gameObject.tag = "Ground";
                     Instantiate(ground, spawnPos, Quaternion.identity, groundHolder);
                 }
             }
@@ -34,5 +35,6 @@ public class GroundGeneration : MonoBehaviour
                 }
             }
         }
+        PlayerBase.instance.SetBase();
     }
 }

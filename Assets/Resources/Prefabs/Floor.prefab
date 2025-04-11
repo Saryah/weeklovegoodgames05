@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 124383581550690107}
   - component: {fileID: 6188753785653831381}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Floor
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb566747ee671428ec3c17ede5052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objSprite: {fileID: 21300000, guid: 4d441d085aaad884eacbe7dc24d3a81d, type: 3}
+  objSprite: {fileID: 21300000, guid: 1eb01090497eefd44993c7e451874e75, type: 3}
 --- !u!33 &5127664304227396095
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -79,7 +79,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 81844fd952ad70c45af1e7a422c32b4a, type: 2}
+  - {fileID: 2100000, guid: 4188822e710443a4c980dea179c69c51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
