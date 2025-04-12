@@ -33,7 +33,7 @@ public class PlayerBase : MonoBehaviour
                     if (groundObj.transform.position.x == l && groundObj.transform.position.z == w)
                     {
                         Renderer[] renderers = groundObj.GetComponentsInChildren<Renderer>();
-                        groundObj.GetComponent<Object>().objSprite = Resources.Load<Sprite>("UI/ButtonUI/Floor");
+                        
                         foreach (var renderer in renderers)
                         {
                             renderer.material = baseMat;

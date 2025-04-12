@@ -47,7 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4bcb566747ee671428ec3c17ede5052f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objSprite: {fileID: 21300000, guid: 4d441d085aaad884eacbe7dc24d3a81d, type: 3}
+  health: 0
+  maxHealth: 0
+  cost: 0
 --- !u!33 &5127664304227396095
 MeshFilter:
   m_ObjectHideFlags: 0

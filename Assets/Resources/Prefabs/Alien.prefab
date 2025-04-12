@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7047492916465697991}
   m_Layer: 0
   m_Name: Alien
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,11 +79,13 @@ MonoBehaviour:
   cooldownTimer: 2.5
   firePoint: {fileID: 5393031739391410141}
   bulletPrefab: {fileID: 7823002718135721693, guid: 2d4e4031ff812bd48b33c71c474604ce, type: 3}
+  pulseCorePrefab: {fileID: 462801879053514704, guid: 92dfe4f4beb2c0b40b34612d9d8acdcd, type: 3}
   _target: {fileID: 0}
   _targets: []
   isAttacking: 0
   notMoving: 0
   partToRotate: {fileID: 1154523932977531183}
+  _rb: {fileID: 0}
 --- !u!54 &7047492916465697991
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -107,9 +109,9 @@ Rigidbody:
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &2320155109068821306
 GameObject:

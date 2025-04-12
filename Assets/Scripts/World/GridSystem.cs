@@ -30,6 +30,7 @@ public class GridSystem : MonoBehaviour
         GameManager.instance.inMenu = false;
         GameManager.instance.LockCursor();
         GameManager.instance.player.GetComponent<FirstPersonController>().enabled = true;
+        GameManager.instance.buildMode = true;
     }
     void CreateGhostObject()
     {
@@ -129,8 +130,17 @@ public class GridSystem : MonoBehaviour
             Instantiate(objectToPlace, placementPosition, ghostObject.transform.rotation);
             occupiedPositions.Add(placementPosition);
         }
+
+        Player.instance.playerMoney -= ghostObject.GetComponent<Object>().cost;
+        GameManager.instance.UpdateMoney();
+        ExitBuildMode();
+    }
+
+    public void ExitBuildMode()
+    {
         Destroy(ghostObject);
         ghostObject = null;
         objectToPlace = null;
+        GameManager.instance.buildMode = false;
     }
 }

@@ -9,6 +9,7 @@ TagManager:
   - Obstical
   - NPC
   - Enemy
+  - Projectiles
   layers:
   - Default
   - TransparentFX
