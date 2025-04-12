@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -10,12 +11,14 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public bool inMenu = false;
     public bool buildMode = false;
+    public bool gameOver = false;
     public int level;
     public List<GameObject> enemiesOnMap = new List<GameObject>();
     [Space(10)] 
     [Header("Menu")] 
     public GameObject buildMenu;
     public TMP_Text waveTimerText;
+    public GameObject gameOverMenu;
     [Space(10)] 
     [Header("HUD")] 
     public TMP_Text healthTxt;
@@ -35,11 +38,13 @@ void Awake()
         buildMenu.SetActive(false);
         UpdateHealth(Player.instance.playerHealth);
         UpdateMoney();
-        
+        gameOverMenu.SetActive(false);
     }
     // Update is called once per frame
     void Update()
     {
+        if (gameOver)
+            return;
         if (!WaveSpawner.instance.isWaveStarted)
         {
             waveTimerText.gameObject.SetActive(true);
@@ -57,16 +62,34 @@ void Awake()
         }
         if (Input.GetKeyDown(KeyCode.B))
         {
-            buildMenu.SetActive(true);
-            player.GetComponent<FirstPersonController>().enabled = false;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-            inMenu = true;
+            if (inMenu)
+            {
+                buildMenu.SetActive(false);
+                inMenu = false;
+                LockCursor();
+            }
+            else
+            {
+                buildMenu.SetActive(true);
+                inMenu = true;
+                UnlockCursor();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             buildMode = false;
+            buildMenu.SetActive(false);
+            inMenu = false;
+            LockCursor();
+        }
+
+        if (Player.instance.playerHealth <= 0)
+        {
+            gameOver = true;
+            gameOverMenu.SetActive(true);
+            inMenu = true;
+            UnlockCursor();
         }
     }
 
@@ -96,5 +119,11 @@ void Awake()
     public void UpdateMoney()
     {
         moneyTxt.text = Player.instance.playerMoney.ToString();
+    }
+
+    public void RestartLevel()
+    {
+        string sceneName = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(sceneName);
     }
 }

@@ -80,6 +80,7 @@ MonoBehaviour:
   firePoint: {fileID: 5393031739391410141}
   bulletPrefab: {fileID: 7823002718135721693, guid: 2d4e4031ff812bd48b33c71c474604ce, type: 3}
   pulseCorePrefab: {fileID: 462801879053514704, guid: 92dfe4f4beb2c0b40b34612d9d8acdcd, type: 3}
+  healthPackPrefab: {fileID: 3710034977263202909, guid: f30c3ca6936d81d4f90080c455e716d1, type: 3}
   _target: {fileID: 0}
   _targets: []
   isAttacking: 0
@@ -138,7 +139,7 @@ Transform:
   m_GameObject: {fileID: 2320155109068821306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.618, z: -0.082}
+  m_LocalPosition: {x: -0.097, y: -0.716, z: 0.052}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -246,11 +247,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: dadaf9ed78ef1c24e818723e24cacd73, type: 2}
     - target: {fileID: 2849339999506844969, guid: 6c0372693bcae6e498a50c21669b8a2d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7394608
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2849339999506844969, guid: 6c0372693bcae6e498a50c21669b8a2d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6731996
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 2849339999506844969, guid: 6c0372693bcae6e498a50c21669b8a2d, type: 3}
       propertyPath: m_LocalRotation.y
@@ -262,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2849339999506844969, guid: 6c0372693bcae6e498a50c21669b8a2d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -84.629
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 2910270030474140525, guid: 6c0372693bcae6e498a50c21669b8a2d, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'

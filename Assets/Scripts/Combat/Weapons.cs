@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Weapons : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Weapons : MonoBehaviour
     public float reloadTimer = 2f;
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public float range;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -19,34 +21,42 @@ public class Weapons : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.buildMode)
+        if (GameManager.instance.inMenu || GameManager.instance.buildMode)
+            return;
+        if (Input.GetMouseButtonDown(0))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (ammunition > 0)
             {
-                if (ammunition > 0)
-                {
-                    Shoot();
-                }
+                Shoot();
             }
+        }
 
-            if (ammunition <= 0)
+        if (ammunition <= 0)
+        {
+            if (reloadTime <= 0)
             {
-                if (reloadTime <= 0)
-                {
-                    ammunition = maxAmmunition;
-                    reloadTime = reloadTimer;
-                    GameManager.instance.UpdateAmmo(ammunition);
-                }
-                reloadTime -= Time.deltaTime;
+                ammunition = maxAmmunition;
+                reloadTime = reloadTimer;
+                GameManager.instance.UpdateAmmo(ammunition); 
             }
-            
+            reloadTime -= Time.deltaTime;
         }
     }
 
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-        ammunition--;
-        GameManager.instance.UpdateAmmo(ammunition);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, range))
+        {
+            Vector3 hitPos = hit.point;
+
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            bullet.GetComponent<Projectile>().targetPosition = hitPos;
+
+            ammunition--;
+            GameManager.instance.UpdateAmmo(ammunition);
+        }
     }
 }

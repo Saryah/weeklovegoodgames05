@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GridSystem : MonoBehaviour
 {
+    public static GridSystem instance;
     public GameObject objectToPlace;
     public float gridSize = 1f;
     [SerializeField] List<Color> colors = new List<Color>();
@@ -12,6 +13,13 @@ public class GridSystem : MonoBehaviour
     [SerializeField] private bool canPlace;
     public Color canPlaceColor;
     public Color cantPlaceColor;
+
+    void Awake()
+    {
+        if(instance != null)
+            Destroy(instance);
+        instance = this;
+    }
 
     void Update()
     {

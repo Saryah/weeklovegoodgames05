@@ -14,6 +14,7 @@ public class AlienAI : MonoBehaviour
     public GameObject bulletPrefab;
 
     [SerializeField] private GameObject pulseCorePrefab;
+    [SerializeField] private GameObject healthPackPrefab;
     [SerializeField] Transform _target;
     [SerializeField] List<GameObject> _targets = new List<GameObject>();
     [SerializeField] private bool isAttacking, notMoving;
@@ -105,6 +106,7 @@ public class AlienAI : MonoBehaviour
 
     void Attacking()
     {
+        bulletPrefab.GetComponent<Projectile>().targetPosition = _target.transform.position;
         Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
         isAttacking = true;
     }
@@ -120,7 +122,13 @@ public class AlienAI : MonoBehaviour
                 WaveSpawner.instance.isWaveStarted = false;
                 GameManager.instance.level++;
             }
-            Vector3 pulseSpawn =new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
+            int healthPackChance = Random.Range(0, 100);
+            Vector3 pulseSpawn = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
+            Vector3 healthSpawn = new Vector3 (transform.position.x, transform.position.y + 2, transform.position.z);
+            if (healthPackChance > 50)
+            {
+                Instantiate(healthPackPrefab, healthSpawn, Quaternion.identity);
+            }
             Instantiate(pulseCorePrefab,pulseSpawn,Quaternion.identity);
             Destroy(gameObject,0.1F);
         }

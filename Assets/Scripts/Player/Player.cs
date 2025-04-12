@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         playerHealth -= damage;
+        GameManager.instance.UpdateHealth(Player.instance.playerHealth);
     }
 
 }

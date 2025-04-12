@@ -92,6 +92,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 50
+  cost: 2
+  icon: {fileID: 21300000, guid: 9ae6869de65db8d42861174a5644b036, type: 3}
 --- !u!1001 &3631419145386416590
 PrefabInstance:
   m_ObjectHideFlags: 0

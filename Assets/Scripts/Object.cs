@@ -5,6 +5,7 @@ public class Object : MonoBehaviour
     public int health;
     public int maxHealth;
     public int cost;
+    public Sprite icon;
 
     void Start()
     {

@@ -7,13 +7,19 @@ public class Projectile : MonoBehaviour
     public int damage = 10;
 
     private Vector3 startPosition;
+    public Vector3 targetPosition;
     private Rigidbody rb;
 
     void Start()
     {
         startPosition = transform.position;
         rb = GetComponent<Rigidbody>();
-        rb.linearVelocity = transform.forward.normalized * speed;
+
+        // Get the direction from fire point to target
+        Vector3 direction = (targetPosition - startPosition).normalized;
+
+        // Set velocity in that direction
+        rb.linearVelocity = direction * speed;
     }
 
     void FixedUpdate()
