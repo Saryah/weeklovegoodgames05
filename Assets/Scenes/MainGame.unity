@@ -667,7 +667,7 @@ MonoBehaviour:
   spawnMinW: -75
   spawnMaxW: 75
   ground: {fileID: 6928889775032133830, guid: be00fa5fbe7b3924897b50ab051de247, type: 3}
-  worldBorder: {fileID: 4744816442106237656, guid: 9d67a26b97de22c4ab62c184f431a6f4, type: 3}
+  worldBorder: {fileID: 6753652590225483262, guid: 11009017d6b8ba942b577aca1eaf89a1, type: 3}
   spawnPoint: {fileID: 6819651678360939169, guid: bce4dd14cbc34ef4283973da7f190949, type: 3}
   groundHolder: {fileID: 333916060}
   spawnPointHolder: {fileID: 706247646}

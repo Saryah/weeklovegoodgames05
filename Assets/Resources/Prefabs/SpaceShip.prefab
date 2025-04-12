@@ -104,8 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numberOfSpawns: 5
   aliens:
-  - {fileID: 1620136132836710402, guid: f5f512c94dc73324499085039be3adca, type: 3}
+  - {fileID: 6025740872350385647, guid: 78db89d8c6545be4b89ee5ea9a187383, type: 3}
   - {fileID: 5288519388308962958, guid: a0799fd7d1776f2459337170442c48cb, type: 3}
+  - {fileID: 8272314344257875921, guid: 2e6709913e695714eb1194319a2b44f8, type: 3}
   spawnPoint: {fileID: 8574964548890586438}
   origin: {fileID: 0}
   destination: {fileID: 0}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 public class AlienAI : MonoBehaviour
 {
@@ -106,7 +107,16 @@ public class AlienAI : MonoBehaviour
 
     void Attacking()
     {
-        bulletPrefab.GetComponent<Projectile>().targetPosition = _target.transform.position;
+        Projectile projectile = bulletPrefab.GetComponent<Projectile>();
+        if (projectile != null)
+        {
+            bulletPrefab.GetComponent<Projectile>().targetPosition = _target.transform.position;
+        }
+        else
+        {
+            bulletPrefab.GetComponent<ExplosiveProjectile>().targetPosition = _target.transform.position;
+        }
+            
         Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
         isAttacking = true;
     }
@@ -122,15 +132,25 @@ public class AlienAI : MonoBehaviour
                 WaveSpawner.instance.isWaveStarted = false;
                 GameManager.instance.level++;
             }
-            int healthPackChance = Random.Range(0, 100);
-            Vector3 pulseSpawn = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
-            Vector3 healthSpawn = new Vector3 (transform.position.x, transform.position.y + 2, transform.position.z);
-            if (healthPackChance > 50)
-            {
-                Instantiate(healthPackPrefab, healthSpawn, Quaternion.identity);
-            }
-            Instantiate(pulseCorePrefab,pulseSpawn,Quaternion.identity);
+            SpawnPulseCore();
+            SpawnHealthPack();
             Destroy(gameObject,0.1F);
+        }
+    }
+
+    void SpawnPulseCore()
+    {
+        Vector3 pulseSpawn = new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z);
+        Instantiate(pulseCorePrefab,pulseSpawn,Quaternion.identity);
+    }
+
+    void SpawnHealthPack()
+    {
+        int healthPackChance = Random.Range(0, 100);
+        Vector3 healthSpawn = new Vector3 (transform.position.x, transform.position.y + 2, transform.position.z);
+        if (healthPackChance > 50)
+        {
+            Instantiate(healthPackPrefab, healthSpawn, Quaternion.identity);
         }
     }
 
