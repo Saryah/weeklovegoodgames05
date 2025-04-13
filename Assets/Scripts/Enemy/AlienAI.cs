@@ -27,6 +27,7 @@ public class AlienAI : MonoBehaviour
     void Start()
     {
         GameManager.instance.enemiesOnMap.Add(gameObject);
+        GameManager.instance.UpdateEnemies();
         attackCooldown = cooldownTimer;
         InvokeRepeating("FindTarget", 0f, 0.5f);
         _rb = GetComponent<Rigidbody>();
@@ -35,6 +36,8 @@ public class AlienAI : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (_target == null) return;
 
         float distance = Vector3.Distance(transform.position, _target.position);
@@ -65,8 +68,10 @@ public class AlienAI : MonoBehaviour
         _targets.Clear();
         GameObject[] targets = GameObject.FindGameObjectsWithTag("NPC");
         GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject[] obsticles = GameObject.FindGameObjectsWithTag("Obstical");
         _targets.AddRange(targets);
         _targets.Add(player);
+        _targets.AddRange(obsticles);
 
         float shortestDistance = Mathf.Infinity;
         GameObject nearestTarget = null;
@@ -112,12 +117,14 @@ public class AlienAI : MonoBehaviour
         if (projectile != null)
         {
             bulletPrefab.GetComponent<Projectile>().targetPosition = _target.transform.position;
+            bulletPrefab.GetComponent<Projectile>().projectileTag = "Enemy";
         }
         else
         {
             bulletPrefab.GetComponent<ExplosiveProjectile>().targetPosition = _target.transform.position;
+            bulletPrefab.GetComponent<ExplosiveProjectile>().projectileTag = "Enemy";
         }
-            
+        
         Instantiate(bulletPrefab, firePoint.position, bulletPrefab.transform.rotation);
         isAttacking = true;
     }
@@ -128,15 +135,12 @@ public class AlienAI : MonoBehaviour
         if (health <= 0)
         {
             GameManager.instance.enemiesOnMap.Remove(gameObject);
-            if (GameManager.instance.enemiesOnMap.Count <= 0)
-            {
-                WaveSpawner.instance.isWaveStarted = false;
-                GameManager.instance.level++;
-            }
             SpawnPulseCore();
             SpawnHealthPack();
             SpawnAmmo();
             Destroy(gameObject);
+            GameManager.instance.UpdateEnemies();
+            Player.instance.AddKills();
         }
     }
 

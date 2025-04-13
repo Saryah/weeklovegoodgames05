@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
     public AudioSource audio;
     public Material playerMaterial;
     public Renderer[] renderers;
+    public int kills = 0;
+    public int lastMilestone;
+    public GameObject[] npcs;
 
     void Awake()
     {
@@ -28,10 +31,36 @@ public class Player : MonoBehaviour
         playerHealth = playerMaxHealth;
     }
 
+    void Update()
+    {
+        
+    }
+
     public void TakeDamage(int damage)
     {
         playerHealth -= damage;
         GameManager.instance.UpdateHealth();
+    }
+
+    void CheckMilestone()
+    {
+        if (kills % 25 == 0 && kills != 0 && kills != lastMilestone)
+        {
+            lastMilestone = kills;
+            SpawnNPC();
+        }
+    }
+
+    void SpawnNPC()
+    {
+        int randNpc = Random.Range(0, npcs.Length);
+        Instantiate(npcs[randNpc], new Vector3 (0,1,0), Quaternion.identity);
+    }
+
+    public void AddKills()
+    {
+        kills++;
+        CheckMilestone();
     }
 
 }

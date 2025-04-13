@@ -51,6 +51,8 @@ public class WaveSpawner : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (!isWaveStarted)
         {
             if (waveCountdown <= 0)

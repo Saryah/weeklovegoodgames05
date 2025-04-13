@@ -56,6 +56,8 @@ public class SpaceShip : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         switch (currentPhase)
         {
             case Phase.Approaching:

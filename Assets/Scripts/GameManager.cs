@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public bool inMenu = false;
     public bool buildMode = false;
     public bool gameOver = false;
+    public bool gamePaused = false;
     public int level;
     public List<GameObject> enemiesOnMap = new List<GameObject>();
     [Space(10)] 
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject buildMenu;
     public TMP_Text waveTimerText;
     public GameObject gameOverMenu;
+    public GameObject pauseMenu;
     [Space(10)] 
     [Header("HUD")] 
     public TMP_Text healthTxt;
@@ -26,6 +28,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text moneyTxt;
     public TMP_Text healthPackTxt;
     public TMP_Text waveNumberTxt;
+    public TMP_Text enemiesLeftTxt;
     [Space(10)]
     [Header("Audio")]
     public AudioClip healClip;
@@ -45,6 +48,7 @@ void Awake()
         UpdateMoney();
         UpdateAmmo();
         UpdateHealthPack();
+        UpdateEnemies();
         gameOverMenu.SetActive(false);
     }
     // Update is called once per frame
@@ -86,11 +90,18 @@ void Awake()
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            buildMode = false;
-            buildMenu.SetActive(false);
-            inMenu = false;
-            LockCursor();
-            GridSystem.instance.ExitBuildMode();
+            if (!inMenu)
+            {
+                inMenu = true;
+                gamePaused = true;
+                pauseMenu.SetActive(true);
+                UnlockCursor();
+                player.GetComponent<FirstPersonController>().enabled = false;
+            }
+            else
+            {
+                ResumeGame();
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -109,6 +120,22 @@ void Awake()
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            if (!inMenu)
+            {
+                inMenu = true;
+                gamePaused = true;
+                pauseMenu.SetActive(true);
+                UnlockCursor();
+                player.GetComponent<FirstPersonController>().enabled = false;
+            }
+            else
+            {
+                ResumeGame();
+            }
+        }
+
         if (Player.instance.playerHealth <= 0)
         {
             gameOver = true;
@@ -116,8 +143,31 @@ void Awake()
             inMenu = true;
             UnlockCursor();
             player.GetComponent<FirstPersonController>().enabled = false;
+            pauseMenu.SetActive(false);
         }
         
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+    public void ResumeGame()
+    {
+        gamePaused = false;
+        buildMode = false;
+        buildMenu.SetActive(false);
+        inMenu = false;
+        LockCursor();
+        GridSystem.instance.ExitBuildMode();
+        player.GetComponent<FirstPersonController>().enabled = true;
+        pauseMenu.SetActive(false);
     }
 
     public void LockCursor()
@@ -147,7 +197,15 @@ void Awake()
     public void UpdateAmmo()
     {
         int ammo = Player.instance.weaponHolder.GetComponentInChildren<Weapons>().ammunition;
-        ammoTxt.text = ammo + "/" + Player.instance.currentAmmo;
+        if(ammo <= 0 && Player.instance.currentAmmo <= 0)
+            ammoTxt.text ="<color=red>" + ammo + "<color=white>" + "/" +"<color=red>" + Player.instance.currentAmmo;
+        else if (ammo <= 0 && Player.instance.currentAmmo >= 0)
+            ammoTxt.text = "<color=red>" + ammo + "<color=white>" + "/" +"<color=white>" + Player.instance.currentAmmo;
+        else if (ammo >= 0 && Player.instance.currentAmmo <= 0)
+            ammoTxt.text = "<color=white>" + ammo + "<color=white>" + "/" +"<color=red>" + Player.instance.currentAmmo;
+        else if (ammo >= 0 && Player.instance.currentAmmo >= 0)
+            ammoTxt.text = "<color=white>" + ammo + "<color=white>" + "/" +"<color=white>" + Player.instance.currentAmmo;
+        
     }
     public void UpdateMoney()
     {
@@ -163,5 +221,21 @@ void Awake()
     public void UpdateWave()
     {
         waveNumberTxt.text = "Wave: " + level;
+    }
+    public void UpdateEnemies()
+    {
+        enemiesLeftTxt.text = enemiesOnMap.Count.ToString();
+        Debug.Log(enemiesOnMap.Count + " Enemies Left");
+    }
+
+    public void StartWave()
+    {
+        if (enemiesOnMap.Count <= 0)
+        {
+            WaveSpawner.instance.isWaveStarted = false;
+            level++;
+        }
+
+        ResumeGame();
     }
 }

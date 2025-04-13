@@ -27,6 +27,8 @@ public class Weapons : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (Player.instance.currentAmmo <= 0 && ammunition <= 0)
             return;
 
@@ -52,7 +54,7 @@ public class Weapons : MonoBehaviour
             }
         }
 
-        if (ammunition <= 0 || Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             StartCoroutine(Reload());
         }
@@ -66,9 +68,10 @@ public class Weapons : MonoBehaviour
         if (Physics.Raycast(ray, out hit, range))
         {
             Vector3 hitPos = hit.point;
-
+            
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
             bullet.GetComponent<Projectile>().targetPosition = hitPos;
+            bullet.GetComponent<Projectile>().projectileTag = "Player";
 
             ammunition--;
             GameManager.instance.UpdateAmmo();

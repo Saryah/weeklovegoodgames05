@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public string projectileTag;
     public float speed = 10f;
     public float maxDistance = 20f;
     public int damage = 10;
@@ -33,28 +34,50 @@ public class Projectile : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
+        if (projectileTag == "Enemy")
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                Player.instance.TakeDamage(damage);
+            }
+
+            if (other.gameObject.tag == "NPC")
+            {
+                other.gameObject.GetComponent<NpcAI>().TakeDamage(damage);
+            }
+
+            if (other.gameObject.tag == "Obstical")
+            {
+                other.gameObject.GetComponent<Object>().TakeDamage(damage);
+            }
+        }
+
+        if (projectileTag == "Player")
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                other.gameObject.GetComponent<AlienAI>().TakeDamage(damage);
+            }
+        }
+
+        if (projectileTag == "Obstical")
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                other.gameObject.GetComponent<AlienAI>().TakeDamage(damage);
+            }
+        }
+
+        if (projectileTag == "NPC")
+        {
+            if (other.gameObject.tag == "Enemy")
+            {
+                other.gameObject.GetComponent<AlienAI>().TakeDamage(damage);
+            }
+        }
         // Do a thing when hitting something
         Debug.Log("Hit: " + other.gameObject.name);
-        if (other.gameObject.tag == "Player")
-        {
-            Player.instance.TakeDamage(damage);
-            
-        }
-
-        if (other.gameObject.tag == "NPC")
-        {
-            
-        }
-
-        if (other.gameObject.tag == "Enemy")
-        {
-            other.gameObject.GetComponent<AlienAI>().TakeDamage(damage);
-        }
-
-        if (other.gameObject.tag == "Obstical")
-        {
-            other.gameObject.GetComponent<Object>().TakeDamage(damage);
-        }
+        
         Destroy(gameObject);
     }
 }

@@ -178,6 +178,17 @@ MonoBehaviour:
   healthPacks: 0
   weaponHolder: {fileID: 4731631268991082958}
   audio: {fileID: 2758209470010379789}
+  playerMaterial: {fileID: 0}
+  renderers: []
+  kills: 0
+  lastMilestone: 0
+  npcs:
+  - {fileID: 73311058805035039, guid: f9e224d2ced134c4687d7cd55db6b72f, type: 3}
+  - {fileID: 8029460099798107702, guid: 49ddbd0378ee4294c81379b5f74176ab, type: 3}
+  - {fileID: 1865978129572304679, guid: 35120eb6d881c3842931c5871d00442f, type: 3}
+  - {fileID: 8548745607248866208, guid: 26903acacd88bcb4c9f6a9623923da6f, type: 3}
+  - {fileID: 1028431297112039077, guid: 3ad1482b50d9c544c963a115ff7d320f, type: 3}
+  - {fileID: 1869297916900980552, guid: 5bfc4cd95d6411247a13477221131db8, type: 3}
 --- !u!33 &4459864850019384739
 MeshFilter:
   m_ObjectHideFlags: 0

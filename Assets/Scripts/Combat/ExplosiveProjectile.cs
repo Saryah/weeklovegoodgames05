@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ExplosiveProjectile : MonoBehaviour
 {
+    public string projectileTag;
     public float speed = 10f;
     public float maxDistance = 20f;
     public int damage = 10;
@@ -36,6 +37,8 @@ public class ExplosiveProjectile : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (!isLaunched) return;
 
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
@@ -76,7 +79,7 @@ public class ExplosiveProjectile : MonoBehaviour
             }
             else if (obj.CompareTag("NPC"))
             {
-                // Add NPC logic here
+                obj.GetComponent<NpcAI>()?.TakeDamage(damage);
             }
             else if (obj.CompareTag("Obstical"))
             {

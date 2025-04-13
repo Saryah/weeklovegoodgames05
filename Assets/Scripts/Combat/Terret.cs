@@ -21,6 +21,8 @@ public class Terret : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (target == null)
             return;
         
@@ -77,6 +79,7 @@ public class Terret : MonoBehaviour
     void Shoot()
     {
         bulletPrefab.GetComponent<Projectile>().targetPosition = target.transform.position;
+        bulletPrefab.GetComponent<Projectile>().projectileTag = "Obstical";
         Debug.Log(bulletPrefab.GetComponent<Projectile>().targetPosition);
         Instantiate(bulletPrefab, barrels[currentBarrel].position, bulletPrefab.transform.rotation);
         Debug.Log("Bullet Instanitate at Barrel " + barrels[currentBarrel].name);

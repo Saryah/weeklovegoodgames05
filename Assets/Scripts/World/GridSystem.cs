@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,10 +24,12 @@ public class GridSystem : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         if (objectToPlace == null)
             return;
         UpdateGhostPosition();
-        if (Input.GetMouseButtonDown(0) && GameManager.instance.inMenu == false && !PlayerBase.instance.isPurchasingFloor && canPlace)
+        if (Input.GetMouseButtonDown(0) && GameManager.instance.inMenu == false && canPlace)
             PlaceObject();
     }
 
@@ -38,6 +41,7 @@ public class GridSystem : MonoBehaviour
         GameManager.instance.inMenu = false;
         GameManager.instance.LockCursor();
         GameManager.instance.player.GetComponent<FirstPersonController>().enabled = true;
+        Player.instance.weaponHolder.GetComponentInChildren<Weapons>().enabled = false;
         GameManager.instance.buildMode = true;
     }
     void CreateGhostObject()
@@ -150,5 +154,12 @@ public class GridSystem : MonoBehaviour
         ghostObject = null;
         objectToPlace = null;
         GameManager.instance.buildMode = false;
+        StartCoroutine(EnableWeapons());
+    }
+
+    IEnumerator EnableWeapons()
+    {
+        yield return new WaitForSeconds(0.5f);
+        Player.instance.weaponHolder.GetComponentInChildren<Weapons>().enabled = true;  
     }
 }
