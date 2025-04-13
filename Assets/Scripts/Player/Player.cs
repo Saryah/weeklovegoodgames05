@@ -9,6 +9,9 @@ public class Player : MonoBehaviour
     public int currentAmmo = 24;
     public int healthPacks;
     public GameObject weaponHolder;
+    public AudioSource audio;
+    public Material playerMaterial;
+    public Renderer[] renderers;
 
     void Awake()
     {
@@ -19,6 +22,9 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        playerMaterial = LevelSettings.instance.playerMaterial;
+        foreach(Renderer r in renderers)
+            r.material = playerMaterial;
         playerHealth = playerMaxHealth;
     }
 

@@ -10,6 +10,10 @@ public class WaveSpawner : MonoBehaviour
     public int shipsToSpawn;
     public bool isWaveStarted;
     public float waveTimer, waveCountdown;
+    public AudioSource audio;
+    public AudioClip clip;
+    public float multiplier;
+    
     private void Awake()
     {
         if (instance != null)
@@ -20,6 +24,22 @@ public class WaveSpawner : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (LevelSettings.instance.difficulty == "Easy")
+        {
+            multiplier = 1f;
+        }
+        if (LevelSettings.instance.difficulty == "Normal")
+        {
+            multiplier = 1.5f;
+        }
+        if (LevelSettings.instance.difficulty == "Hard")
+        {
+            multiplier = 2f;
+        }
+        if (LevelSettings.instance.difficulty == "Nightmare")
+        {
+            multiplier = 4f;
+        }
         waveCountdown = 10f;
         isWaveStarted = false;
         Transform[] pointsToAdd = GroundGeneration.instance.spawnPointHolder.GetComponentsInChildren<Transform>();
@@ -37,12 +57,15 @@ public class WaveSpawner : MonoBehaviour
             {
                 StartWave();
                 waveCountdown = waveTimer;
+                audio.clip = clip;
+                audio.Play();
             }
             waveCountdown -= Time.deltaTime;
         }
     }
     public void StartWave()
     {
+        GameManager.instance.UpdateWave();
         ShipsToSpawn();
         SpawnShip();
         isWaveStarted = true;
@@ -60,7 +83,7 @@ public class WaveSpawner : MonoBehaviour
 
     public void ShipsToSpawn()
     {
-        shipsToSpawn = (int)(GameManager.instance.level * 1.5f);
+        shipsToSpawn = (int)(GameManager.instance.level * multiplier);
         Debug.Log(shipsToSpawn + " ships spawned");
     }
 }

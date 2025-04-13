@@ -92,7 +92,7 @@ public class GridSystem : MonoBehaviour
             {
                 ghostObject.transform.Rotate(0f, -90f, 0f);
             }
-            if (occupiedPositions.Contains(snappedPos) || hit.collider.tag == "Floor" && objectToPlace.tag == "Floor" || objectToPlace.tag != "Floor" && hit.collider.gameObject.tag != "Floor")
+            if (occupiedPositions.Contains(snappedPos))
             {
                 SetGhostColor(cantPlaceColor);
                 canPlace = false;

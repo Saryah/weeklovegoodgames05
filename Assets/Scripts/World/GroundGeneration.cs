@@ -20,7 +20,7 @@ public class GroundGeneration : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        PlayerBase.instance.SetBase();
+        
     }
 
     void SpawnWorld()

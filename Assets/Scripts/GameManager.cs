@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text ammoTxt;
     public TMP_Text moneyTxt;
     public TMP_Text healthPackTxt;
+    public TMP_Text waveNumberTxt;
+    [Space(10)]
+    [Header("Audio")]
+    public AudioClip healClip;
 
 
 void Awake()
@@ -76,6 +80,7 @@ void Awake()
                 buildMenu.SetActive(true);
                 inMenu = true;
                 UnlockCursor();
+                GridSystem.instance.ExitBuildMode();
             }
         }
 
@@ -85,6 +90,7 @@ void Awake()
             buildMenu.SetActive(false);
             inMenu = false;
             LockCursor();
+            GridSystem.instance.ExitBuildMode();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
@@ -99,6 +105,7 @@ void Awake()
                 Player.instance.healthPacks--;
                 UpdateHealth();
                 UpdateHealthPack();
+                Player.instance.audio.PlayOneShot(healClip);
             }
         }
 
@@ -110,6 +117,7 @@ void Awake()
             UnlockCursor();
             player.GetComponent<FirstPersonController>().enabled = false;
         }
+        
     }
 
     public void LockCursor()
@@ -150,5 +158,10 @@ void Awake()
     {
         string sceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(sceneName);
+    }
+
+    public void UpdateWave()
+    {
+        waveNumberTxt.text = "Wave: " + level;
     }
 }
