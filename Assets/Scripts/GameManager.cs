@@ -24,6 +24,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text healthTxt;
     public TMP_Text ammoTxt;
     public TMP_Text moneyTxt;
+    public TMP_Text healthPackTxt;
 
 
 void Awake()
@@ -36,8 +37,10 @@ void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         buildMenu.SetActive(false);
-        UpdateHealth(Player.instance.playerHealth);
+        UpdateHealth();
         UpdateMoney();
+        UpdateAmmo();
+        UpdateHealthPack();
         gameOverMenu.SetActive(false);
     }
     // Update is called once per frame
@@ -84,12 +87,28 @@ void Awake()
             LockCursor();
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Player.instance.healthPacks > 0)
+            {
+                int testNum = Player.instance.playerHealth + 15;
+                if(testNum >= Player.instance.playerMaxHealth)
+                    Player.instance.playerHealth = Player.instance.playerMaxHealth;
+                else
+                    Player.instance.playerHealth += 15;
+                Player.instance.healthPacks--;
+                UpdateHealth();
+                UpdateHealthPack();
+            }
+        }
+
         if (Player.instance.playerHealth <= 0)
         {
             gameOver = true;
             gameOverMenu.SetActive(true);
             inMenu = true;
             UnlockCursor();
+            player.GetComponent<FirstPersonController>().enabled = false;
         }
     }
 
@@ -107,14 +126,20 @@ void Awake()
         player.GetComponent<FirstPersonController>().enabled = false;
     }
 
-    public void UpdateHealth(int health)
+    public void UpdateHealth()
     {
-        healthTxt.text = health.ToString();
+        healthTxt.text = Player.instance.playerHealth.ToString();
     }
 
-    public void UpdateAmmo(int ammo)
+    public void UpdateHealthPack()
     {
-        ammoTxt.text = ammo.ToString();
+        healthPackTxt.text = Player.instance.healthPacks.ToString();
+    }
+
+    public void UpdateAmmo()
+    {
+        int ammo = Player.instance.weaponHolder.GetComponentInChildren<Weapons>().ammunition;
+        ammoTxt.text = ammo + "/" + Player.instance.currentAmmo;
     }
     public void UpdateMoney()
     {

@@ -170,6 +170,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 7760480835098286257, guid: 152e140888115364ab91a1f13abc0867, type: 3}
   pulseCorePrefab: {fileID: 462801879053514704, guid: 92dfe4f4beb2c0b40b34612d9d8acdcd, type: 3}
   healthPackPrefab: {fileID: 3710034977263202909, guid: f30c3ca6936d81d4f90080c455e716d1, type: 3}
+  ammoPrefab: {fileID: 3900066120393536744, guid: 0e57526b27adfcd4c8d348e595f1daf8, type: 3}
   _target: {fileID: 0}
   _targets: []
   isAttacking: 0

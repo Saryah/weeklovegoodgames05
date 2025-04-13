@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
     public int playerMoney;
     public int playerHealth;
     public int playerMaxHealth;
+    public int currentAmmo = 24;
+    public int healthPacks;
+    public GameObject weaponHolder;
 
     void Awake()
     {
@@ -22,7 +25,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         playerHealth -= damage;
-        GameManager.instance.UpdateHealth(Player.instance.playerHealth);
+        GameManager.instance.UpdateHealth();
     }
 
 }

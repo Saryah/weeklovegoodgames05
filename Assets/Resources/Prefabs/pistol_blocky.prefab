@@ -150,7 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ammunition: 12
   maxAmmunition: 12
+  fireRate: 1
   reloadTime: 0
   reloadTimer: 2
   firePoint: {fileID: 5696478660088280984}
   bulletPrefab: {fileID: 4930491601558774394, guid: aad1d4a4865310a4ea4d22a5ba88106c, type: 3}
+  range: 30

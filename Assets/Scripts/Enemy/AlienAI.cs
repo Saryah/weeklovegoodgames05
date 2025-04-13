@@ -16,6 +16,7 @@ public class AlienAI : MonoBehaviour
 
     [SerializeField] private GameObject pulseCorePrefab;
     [SerializeField] private GameObject healthPackPrefab;
+    [SerializeField] private GameObject ammoPrefab;
     [SerializeField] Transform _target;
     [SerializeField] List<GameObject> _targets = new List<GameObject>();
     [SerializeField] private bool isAttacking, notMoving;
@@ -134,7 +135,8 @@ public class AlienAI : MonoBehaviour
             }
             SpawnPulseCore();
             SpawnHealthPack();
-            Destroy(gameObject,0.1F);
+            SpawnAmmo();
+            Destroy(gameObject);
         }
     }
 
@@ -148,9 +150,20 @@ public class AlienAI : MonoBehaviour
     {
         int healthPackChance = Random.Range(0, 100);
         Vector3 healthSpawn = new Vector3 (transform.position.x, transform.position.y + 2, transform.position.z);
-        if (healthPackChance > 50)
+        if (healthPackChance > 74)
         {
             Instantiate(healthPackPrefab, healthSpawn, Quaternion.identity);
+        }
+    }
+    
+    void SpawnAmmo()
+    {
+        int ammoChance = Random.Range(0, 100);
+        Vector3 ammoSpawn = new Vector3 (transform.position.x, transform.position.y + 2, transform.position.z);
+        Debug.Log("Ammo Chance Roll " + ammoChance + " Needs to be 49 or higher");
+        if (ammoChance > 49)
+        {
+            Instantiate(ammoPrefab, ammoSpawn, Quaternion.identity);
         }
     }
 
