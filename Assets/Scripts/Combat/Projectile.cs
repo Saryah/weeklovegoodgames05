@@ -25,6 +25,8 @@ public class Projectile : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (GameManager.instance.gamePaused || GameManager.instance.gameOver)
+            return;
         float distanceTraveled = Vector3.Distance(startPosition, transform.position);
         if (distanceTraveled >= maxDistance)
         {

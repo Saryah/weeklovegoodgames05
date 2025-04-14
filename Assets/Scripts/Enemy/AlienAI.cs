@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Random = UnityEngine.Random;
 
 public class AlienAI : MonoBehaviour
 {
@@ -177,5 +179,11 @@ public class AlienAI : MonoBehaviour
         {
             _rb.isKinematic = true;
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

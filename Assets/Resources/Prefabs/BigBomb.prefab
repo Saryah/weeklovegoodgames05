@@ -69,12 +69,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61ebfcbd60110b044a1592508d280aef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectileTag: 
   speed: 10
   maxDistance: 20
   damage: 10
   explosionRadius: 7
   delayBeforeLaunch: 4
-  explosionEffectPrefab: {fileID: 0}
+  explosionEffectPrefab: {fileID: 171644820726100196, guid: f8338abf29f9c8f4bb8c26ceeca231d3, type: 3}
   targetPosition: {x: -24.835138, y: 1.0500001, z: -7.3242364}
 --- !u!54 &4123541806025139338
 Rigidbody:

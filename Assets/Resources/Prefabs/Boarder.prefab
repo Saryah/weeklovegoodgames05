@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2462621357888172286}
   - component: {fileID: 8388698626397934770}
   - component: {fileID: -4667846773479800165}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boarder
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -217,6 +217,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 14261ee999655d64db71925ee1bc9f43, type: 3}
       propertyPath: m_Name
       value: tree_blocky
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 14261ee999655d64db71925ee1bc9f43, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

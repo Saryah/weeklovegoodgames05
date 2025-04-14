@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 9107802870252421848}
   - component: {fileID: 2725972540145377944}
   - component: {fileID: 5707852365641481536}
+  - component: {fileID: 2323219926714274234}
   m_Layer: 0
   m_Name: Turret
   m_TagString: Untagged
@@ -272,11 +273,33 @@ MonoBehaviour:
   range: 20
   partToRotate: {fileID: 6592641517171430713}
   rotationSpeed: 10
+  cooldown: 0
   cooldownTimer: 5
   barrels:
   - {fileID: 7485577823306215017}
   - {fileID: 5328762213025710703}
   bulletPrefab: {fileID: 2048275285752875292, guid: 76d1e6117e52e3a41a251aee3adc223b, type: 3}
+--- !u!65 &2323219926714274234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363027597059137830}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.82, y: 1.51, z: 1.82}
+  m_Center: {x: 0, y: 0.51, z: 0}
 --- !u!1 &6440887634656954379
 GameObject:
   m_ObjectHideFlags: 0
