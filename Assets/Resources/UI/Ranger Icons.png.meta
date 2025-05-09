@@ -127,7 +127,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 2164
+        y: 3246
         width: 1082
         height: 1082
       alignment: 0
@@ -149,7 +149,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1082
-        y: 2164
+        y: 3246
         width: 1082
         height: 1082
       alignment: 0
@@ -171,7 +171,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2164
-        y: 2164
+        y: 3246
         width: 1082
         height: 1082
       alignment: 0
@@ -193,7 +193,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3246
-        y: 2164
+        y: 3246
         width: 1082
         height: 1082
       alignment: 0
@@ -215,7 +215,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1082
+        y: 2164
         width: 1082
         height: 1082
       alignment: 0
@@ -237,7 +237,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1082
-        y: 1082
+        y: 2164
         width: 1082
         height: 1082
       alignment: 0
@@ -259,7 +259,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2164
-        y: 1082
+        y: 2164
         width: 1082
         height: 1082
       alignment: 0
@@ -281,7 +281,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3246
-        y: 1082
+        y: 2164
         width: 1082
         height: 1082
       alignment: 0
@@ -303,7 +303,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
+        y: 1082
         width: 1082
         height: 1082
       alignment: 0
@@ -325,7 +325,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1082
-        y: 0
+        y: 1082
         width: 1082
         height: 1082
       alignment: 0
@@ -347,7 +347,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 2164
-        y: 0
+        y: 1082
         width: 1082
         height: 1082
       alignment: 0
@@ -369,7 +369,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 3246
-        y: 0
+        y: 1082
         width: 1082
         height: 1082
       alignment: 0
@@ -382,6 +382,94 @@ TextureImporter:
       bones: []
       spriteID: a404603c3ac95ce4eafb9c844355a388
       internalID: 1086435411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Icons_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 1082
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ba8dfda02993de4480dad3c57e0ca77
+      internalID: -937419852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Icons_13
+      rect:
+        serializedVersion: 2
+        x: 1082
+        y: 0
+        width: 1082
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 721f44b965109dc4bace5dafad86c5da
+      internalID: -1695417312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Icons_14
+      rect:
+        serializedVersion: 2
+        x: 2164
+        y: 0
+        width: 1082
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfbb6025676a49141bbc8a49020a6e03
+      internalID: -2049095097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Ranger Icons_15
+      rect:
+        serializedVersion: 2
+        x: 3246
+        y: 0
+        width: 1082
+        height: 1082
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24e5da9f11c8ed8499ae1f30daa686c4
+      internalID: 168090483
       vertices: []
       indices: 
       edges: []
@@ -404,6 +492,10 @@ TextureImporter:
       Ranger Icons_1: -762674649
       Ranger Icons_10: -1971889541
       Ranger Icons_11: 1086435411
+      Ranger Icons_12: -937419852
+      Ranger Icons_13: -1695417312
+      Ranger Icons_14: -2049095097
+      Ranger Icons_15: 168090483
       Ranger Icons_2: 318719418
       Ranger Icons_3: 500558351
       Ranger Icons_4: 2093752367

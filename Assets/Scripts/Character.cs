@@ -1,19 +1,16 @@
 using UnityEngine;
 
-public class Character : MonoBehaviour
+[CreateAssetMenu(fileName = "Character", menuName = "Scriptable Objects/Character")]
+public class Character : ScriptableObject
 {
-    public Ranger ranger;
-    public Renderer[] rends;
-    private Material mat;
+    public string charName;
+    public Sprite icon;
+    public Texture skin;
+    public int startPower;
+    public int startHealth;
+    public int startVitality;
+    public int startBody;
+    public int startFocus;
+    public int startAtkRange;
 
-    void Start()
-    {
-        
-        mat = new Material(Resources.Load<Material>("Skins/Materials/RangerSkin"));
-        mat.mainTexture = ranger.suit;
-        foreach (var rend in rends)
-        {
-            rend.material = mat;
-        }
-    }
 }

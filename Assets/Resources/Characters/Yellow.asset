@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0234eff47424ec47a267062c2753432, type: 3}
+  m_Name: Yellow
+  m_EditorClassIdentifier: 
+  charName: Axel Volt
+  icon: {fileID: 318719418, guid: b3fced3431e6143439150b3a3c52ccbd, type: 3}
+  skin: {fileID: 2800000, guid: 5146039a87427bc489616e7a61441e12, type: 3}
+  startPower: 19
+  startHealth: 4
+  startVitality: 6
+  startBody: 5
+  startFocus: 6
+  startAtkRange: 8
